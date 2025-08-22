@@ -7,7 +7,7 @@
      <title>SIT College - Home</title>
      <style>
           :root {
-               --primary-blue: #1E3A8A;
+               --primary-blue: #243c7e;
                --secondary-blue: #2563EB;
                --accent-yellow: #FACC15;
                --bg-light: #F9FAFB;
@@ -22,7 +22,7 @@
           }
 
           body {
-               background: var(--bg-light);
+               background: linear-gradient(to right, #e3f2fd, #bbdefb);
                color: var(--text-dark);
           }
 
@@ -248,13 +248,117 @@
                     padding: 0 4vw;
                }
           }
+
+
+          @media (max-width: 500px) {
+               .header-title {
+                    font-size: 18px;
+                    padding: 0 10px;
+               }
+
+               .hero h2 {
+                    font-size: 24px;
+               }
+
+               .hero p {
+                    font-size: 14px;
+               }
+
+               nav ul {
+                    flex-direction: column;
+                    gap: 8px;
+               }
+
+               .card img,
+               .card .img1 {
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+               }
+          }
+
+
+          @media (min-width: 501px) and (max-width: 900px) {
+               .header-title {
+                    font-size: 20px;
+               }
+
+               .hero h2 {
+                    font-size: 28px;
+               }
+
+               .cards {
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               }
+          }
+
+
+          .contact {
+               text-align: center;
+               padding: 40px 20px;
+               background: #f0f8ff;
+          }
+
+          .contact h2 {
+               font-size: 26px;
+               color: #004080;
+               margin-bottom: 20px;
+          }
+
+          .contact-card {
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               gap: 20px;
+               background: white;
+               border-radius: 12px;
+               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+               padding: 20px;
+          }
+
+          .address {
+               flex: 1 1 250px;
+               text-align: left;
+          }
+
+          .address h3 {
+               color: #004080;
+               margin-bottom: 10px;
+          }
+
+          .address p {
+               margin-bottom: 15px;
+               color: #333;
+               line-height: 1.5;
+          }
+
+          .map-btn {
+               display: inline-block;
+               padding: 10px 18px;
+               background: #004080;
+               color: white;
+               text-decoration: none;
+               border-radius: 6px;
+               font-size: 14px;
+               transition: 0.3s;
+          }
+
+          .map-btn:hover {
+               background: #0073e6;
+          }
+
+          .map-container {
+               flex: 1 1 300px;
+               border-radius: 12px;
+               overflow: hidden;
+          }
      </style>
 </head>
 
 <body>
      <header class="header">
           <span class="header-icon left" title="Menu"><img class="img-logo" src="img/sit.jpeg" alt=""></span>
-          <span class="header-title">Seshasayee Institute of Technology ,Trichy</span>
+          <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY ,Trichy</span>
           <span class="header-icon right" title="User"><img class="img-logo" src="img/FOUNDER.jpeg" alt=""></span>
      </header>
      <nav>
@@ -358,6 +462,30 @@
                          <img src="img/plasment.png" alt="Placement Icon" />
                          <h3>Best Placement Record</h3>
                     </div>
+               </div>
+          </section>
+          <section class="contact">
+               <h2>Find Us</h2>
+               <div class="contact-card">
+
+                    <div class="address">
+                         <h3>Address</h3>
+                         <p>
+                              Thanjore Main Road,<br>
+                              Ariyamangalam, Kamaraj Nagar,<br>
+                              Trichy-620010,<br>
+                              Tamilnadu, India
+                         </p>
+
+                    </div>
+
+                    <div class="map-container">
+                         <iframe
+                              src="https://www.google.com/maps?q=Seshasayee+Institute+of+Technology+Trichy&hl=en&z=16&output=embed"
+                              width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+                         </iframe>
+                    </div>
+
                </div>
           </section>
 
