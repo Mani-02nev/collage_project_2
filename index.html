@@ -68,6 +68,93 @@
                margin-left: auto;
           }
 
+          /* Header */
+          header {
+               background: #0056b3;
+               color: white;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               padding: 10px 20px;
+               position: sticky;
+               top: 0;
+               z-index: 1000;
+          }
+
+          .logo {
+               font-size: 20px;
+               font-weight: bold;
+          }
+
+          /* Desktop Navbar */
+          nav ul {
+               list-style: none;
+               margin: 0;
+               padding: 0;
+               display: flex;
+               gap: 20px;
+          }
+
+          nav ul li a {
+               color: white;
+               text-decoration: none;
+               font-weight: bold;
+          }
+
+          /* Mobile Hamburger */
+          .menu-toggle {
+               display: none;
+               flex-direction: column;
+               cursor: pointer;
+          }
+
+          .menu-toggle div {
+               width: 25px;
+               height: 3px;
+               background: white;
+               margin: 4px 0;
+               border-radius: 2px;
+          }
+
+          /* Mobile Menu (Hidden) */
+          .mobile-nav {
+               display: none;
+               position: fixed;
+               top: 0;
+               right: -250px;
+               width: 250px;
+               height: 100%;
+               background: #003d80;
+               padding-top: 60px;
+               transition: 0.3s ease;
+               flex-direction: column;
+               gap: 20px;
+               padding-left: 20px;
+          }
+
+          .mobile-nav a {
+               color: white;
+               text-decoration: none;
+               font-size: 18px;
+          }
+
+          /* When menu is active */
+          .mobile-nav.active {
+               right: 0;
+               display: flex;
+          }
+
+          /* Responsive */
+          @media (max-width: 768px) {
+               nav ul {
+                    display: none;
+               }
+
+               .menu-toggle {
+                    display: flex;
+               }
+          }
+
           /* NavBar */
           nav {
                width: 100%;
@@ -361,15 +448,33 @@
           <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY ,Trichy</span>
           <span class="header-icon right" title="User"><img class="img-logo" src="img/FOUNDER.jpeg" alt=""></span>
      </header>
+     <!-- Desktop Navbar -->
      <nav>
           <ul>
                <li><a href="#">Home</a></li>
                <li><a href="#">Departments</a></li>
-               <li><a href="#">Admissions</a></li>
+               <li><a href="#">Why Us</a></li>
                <li><a href="#">About</a></li>
                <li><a href="#">Contact</a></li>
           </ul>
      </nav>
+
+     <!-- Hamburger -->
+     <div class="menu-toggle" onclick="toggleMenu()">
+          <div></div>
+          <div></div>
+          <div></div>
+     </div>
+     </header>
+
+     <!-- Mobile Navbar -->
+     <div class="mobile-nav" id="mobileNav">
+          <a href="#">Home</a>
+          <a href="#">Departments</a>
+          <a href="#">Why Us</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+     </div>
      <div class="main-content">
           <div class="hero">
                <h2>Welcome to SIT Trichy</h2>
@@ -488,6 +593,11 @@
 
                </div>
           </section>
+          <script>
+               function toggleMenu() {
+                    document.getElementById("mobileNav").classList.toggle("active");
+               }
+          </script>
 
           <footer>
                <p>&copy; 2025 SIT Trichy | All Rights Reserved</p>
