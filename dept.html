@@ -18,78 +18,96 @@
           }
 
           body {
+               padding-top: 0;
+               /* header is static, navbar is sticky so no extra padding needed */
                background: linear-gradient(to right, #e3f2fd, #bbdefb);
-               color: var(--text-dark);
                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           }
 
+
+          /* Navbar */
           .navbar {
-               display: flex;
-               justify-content: space-between;
-               align-items: center;
                background: #cce5ff;
-               padding: 10px 40px;
-               border-top: 2px solid #243c7e;
-               border-bottom: 1px solid #000000;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+               color: black;
                position: sticky;
                top: 0;
+               /* sticks to top when scrolling under header */
                z-index: 1000;
+               border-radius: 0 0 50px 50px;
           }
 
-          .navbar .logo {
-               font-size: 20px;
+
+          .navbar-brand {
+               font-size: 1.5rem;
                font-weight: bold;
-               color: #111;
+               color: rgb(0, 0, 0) !important;
           }
 
-          .navbar .nav-links {
-               list-style: none;
-               display: flex;
-               gap: 30px;
-               margin: 0;
-               padding: 0;
-          }
-
-          .navbar .nav-links li a {
-               text-decoration: none;
-               font-weight: 600;
-               color: black;
-               padding: 6px 12px;
+          .navbar-nav .nav-link {
+               color: rgb(0, 0, 0) !important;
+               font-weight: 500;
+               transition: all 0.3s ease;
                border-radius: 8px;
-               transition: 0.3s;
+               padding: 8px 12px;
           }
 
-          .navbar .nav-links li a:hover {
-               background: #2563eb;
-               color: white;
+          .navbar-nav .nav-link:hover {
+               background: #2563EB;
+               color: #ffffff !important;
+               transform: scale(1.05);
+               box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
           }
 
-          .navbar .nav-links li a.active {
+          .navbar-nav .nav-link.active {
                background: #1e40af;
                color: #fff !important;
-               box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
           }
 
+          /* Header */
+          .header {
+               background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+               color: #fff;
+               padding: 15px 20px;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+          }
+
+
+          .header-title {
+               font-size: 22px;
+               font-weight: 600;
+               text-align: center;
+               flex: 1;
+          }
+
+          .img-logo {
+               width: 50px;
+               height: 50px;
+               border-radius: 10px;
+          }
+
+          /* Main container */
           .main-container {
                display: flex;
-               min-height: calc(100vh - 56px);
+               min-height: calc(100vh - 70px);
+               /* subtract navbar height */
           }
 
           /* Sidebar */
           .left-sidebar {
                width: 250px;
-               /* background-color: #fff; */
-               padding: 20px;
-               /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); */
+               padding: 25px 30px;
                position: sticky;
-               top: 56px;
-               height: calc(100vh - 56px);
+               top: 70px;
+               /* align with navbar */
+               height: calc(100vh - 70px);
                overflow-y: auto;
                transition: all 0.3s ease;
                background: #f8faff;
                border: 2px solid #0d47a1;
                border-radius: 15px;
-               padding: 25px 30px;
                text-align: justify;
                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
                line-height: 1.8;
@@ -121,6 +139,7 @@
                transform: translateX(5px);
           }
 
+          /* Main content */
           .main-content {
                flex-grow: 1;
                padding: 20px 40px;
@@ -145,8 +164,6 @@
                transform: translateY(0);
           }
 
-
-
           h2 {
                color: var(--primary-blue);
                border-bottom: 2px solid var(--secondary-blue);
@@ -154,7 +171,7 @@
                margin-bottom: 20px;
           }
 
-          /* HOD Card hover effect */
+          /* HOD Card */
           .hod-card {
                display: flex;
                background: #fff;
@@ -202,7 +219,7 @@
                text-decoration: underline;
           }
 
-          /* Faculty Cards hover effect */
+          /* Faculty Cards */
           .faculty-card-grid {
                display: flex;
                flex-wrap: wrap;
@@ -275,6 +292,15 @@
                transform: scale(1.05);
           }
 
+          /* Footer */
+          .footer {
+               background-color: var(--primary-blue);
+               color: #fff;
+               text-align: center;
+               padding: 20px;
+               margin-top: 40px;
+          }
+
           /* Responsive */
           @media (max-width: 768px) {
                .hod-card {
@@ -303,29 +329,47 @@
                     flex-direction: column;
                }
           }
-
-          /* Footer */
-          .footer {
-               background-color: var(--primary-blue);
-               color: #fff;
-               text-align: center;
-               padding: 20px;
-               margin-top: 40px;
-          }
      </style>
 </head>
 
 <body>
-     <nav class="navbar">
-          <div class="logo">SIT College</div>
-          <ul class="nav-links">
-               <li><a href="index.html">Home</a></li>
-               <li><a href=# class="active">Departments</a></li>
-               <li><a href="admission.html">Admission</a></li>
-               <li><a href="about.html">About</a></li>
-               <li><a href="contact.html">Contact</a></li>
-          </ul>
+     <!-- Header -->
+     <header class="header">
+          <span><img class="img-logo" src="img/sit.jpeg" alt="SIT Logo"></span>
+          <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY, Trichy</span>
+          <span><img class="img-logo" src="img/FOUNDER.jpeg" alt="Founder"></span>
+     </header>
+
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+          <div class="container-fluid">
+               <a class="navbar-brand" href="index.html">SIT College</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav gap-3">
+                         <li class="nav-item">
+                              <a class="nav-link" href="index.html">Home</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="dept.html">Departments</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="admission.html">Admission</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link active" href="about.html">About</a>
+                         </li>
+                         <li class="nav-item">
+                              <a class="nav-link" href="contact.html">Contact</a>
+                         </li>
+                    </ul>
+               </div>
+          </div>
      </nav>
+
      <!-- Sidebar + Main content -->
      <div class="main-container">
           <nav class="left-sidebar">
@@ -343,7 +387,6 @@
           </nav>
 
           <main class="main-content">
-               <!-- Sections -->
                <section id="about" class="content-section">
                     <h2>About the Department</h2>
                     <p>The Department of Computer Engineering, established in 1990, has been dedicated to delivering
@@ -443,6 +486,23 @@
                     <ul>
                          <li>1️⃣ Our graduates will apply the knowledge of computer engineering to plan and design
                               solutions.</li>
+                    </ul>
+                    <ul>
+                         <h4>POS</h4>
+                         <li> 📌 Basic and Discipline-specific knowledge: Apply knowledge of mathematics, science, and
+                              engineering fundamentals to solve engineering problems.</li>
+                         <li>📌 Problem analysis: Identify and analyze well-defined engineering problems using standard
+                              methods.</li>
+                         <li>📌 Design/Development of solutions: Design solutions for technical problems and assist with
+                              system or process design.</li>
+                         <li> 📌 Engineering Tools, Experimentation & Testing: Use modern tools and techniques to
+                              conduct standard tests and measurements.</li>
+                         <li> 📌 Engineering practices for society, sustainability & environment: Apply technology in
+                              the context of society, sustainability, and ethics.</li>
+                         <li> 📌 Project Management: Use engineering management principles individually or as a team to
+                              manage projects and communicate effectively.</li>
+                         <li> 📌 Life-long learning: Ability to analyze individual needs and stay updated with
+                              technological changes.</li>
                     </ul>
                </section>
 
