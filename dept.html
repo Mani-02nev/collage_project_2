@@ -2,40 +2,475 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>SIT Trichy - Departments</title>
-     <link rel="stylesheet" href="css/style.css">
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>SIT - Department of Computer Engineering</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+     <style>
+          :root {
+               --primary-blue: #243c7e;
+               --secondary-blue: #2563EB;
+               --accent-yellow: #FACC15;
+               --bg-light: #f4f7f9;
+               --text-dark: #333;
+          }
+
+          body {
+               background: linear-gradient(to right, #e3f2fd, #bbdefb);
+               color: var(--text-dark);
+               font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+
+          .navbar {
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               background: #cce5ff;
+               padding: 10px 40px;
+               border-top: 2px solid #243c7e;
+               border-bottom: 1px solid #000000;
+               position: sticky;
+               top: 0;
+               z-index: 1000;
+          }
+
+          .navbar .logo {
+               font-size: 20px;
+               font-weight: bold;
+               color: #111;
+          }
+
+          .navbar .nav-links {
+               list-style: none;
+               display: flex;
+               gap: 30px;
+               margin: 0;
+               padding: 0;
+          }
+
+          .navbar .nav-links li a {
+               text-decoration: none;
+               font-weight: 600;
+               color: black;
+               padding: 6px 12px;
+               border-radius: 8px;
+               transition: 0.3s;
+          }
+
+          .navbar .nav-links li a:hover {
+               background: #2563eb;
+               color: white;
+          }
+
+          .navbar .nav-links li a.active {
+               background: #1e40af;
+               color: #fff !important;
+               box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+          }
+
+          .main-container {
+               display: flex;
+               min-height: calc(100vh - 56px);
+          }
+
+          /* Sidebar */
+          .left-sidebar {
+               width: 250px;
+               /* background-color: #fff; */
+               padding: 20px;
+               /* box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); */
+               position: sticky;
+               top: 56px;
+               height: calc(100vh - 56px);
+               overflow-y: auto;
+               transition: all 0.3s ease;
+               background: #f8faff;
+               border: 2px solid #0d47a1;
+               border-radius: 15px;
+               padding: 25px 30px;
+               text-align: justify;
+               box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+               line-height: 1.8;
+               font-size: 16px;
+               color: #333;
+          }
+
+          .left-sidebar .nav-header {
+               font-weight: 600;
+               color: var(--primary-blue);
+               padding-bottom: 10px;
+               margin-bottom: 15px;
+               border-bottom: 2px solid var(--secondary-blue);
+          }
+
+          .left-sidebar .nav-link {
+               font-weight: 500;
+               color: #495057;
+               padding: 10px 15px;
+               border-radius: 8px;
+               transition: all 0.3s ease;
+               cursor: pointer;
+          }
+
+          .left-sidebar .nav-link.active,
+          .left-sidebar .nav-link:hover {
+               background-color: #a5ebf9d5;
+               color: black;
+               transform: translateX(5px);
+          }
+
+          .main-content {
+               flex-grow: 1;
+               padding: 20px 40px;
+          }
+
+          /* Section fade-in effect */
+          .content-section {
+               padding: 40px;
+               background-color: #fff;
+               margin-bottom: 20px;
+               border-radius: 12px;
+               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+               display: none;
+               opacity: 0;
+               transform: translateY(20px);
+               transition: all 0.5s ease;
+          }
+
+          .content-section.show {
+               display: block;
+               opacity: 1;
+               transform: translateY(0);
+          }
+
+
+
+          h2 {
+               color: var(--primary-blue);
+               border-bottom: 2px solid var(--secondary-blue);
+               padding-bottom: 10px;
+               margin-bottom: 20px;
+          }
+
+          /* HOD Card hover effect */
+          .hod-card {
+               display: flex;
+               background: #fff;
+               border-radius: 12px;
+               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+               overflow: hidden;
+               padding: 25px;
+               gap: 25px;
+               margin-bottom: 30px;
+               transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .hod-card:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          }
+
+          .hod-card img {
+               width: 220px;
+               border-radius: 12px;
+               object-fit: cover;
+          }
+
+          .hod-card h3 {
+               font-size: 1.5rem;
+               font-weight: 700;
+               margin-bottom: 5px;
+               color: var(--primary-blue);
+          }
+
+          .hod-card p {
+               margin-bottom: 10px;
+               line-height: 1.6;
+               color: var(--text-dark);
+               text-align: justify;
+          }
+
+          .hod-card a {
+               color: var(--secondary-blue);
+               text-decoration: none;
+               font-weight: 500;
+          }
+
+          .hod-card a:hover {
+               text-decoration: underline;
+          }
+
+          /* Faculty Cards hover effect */
+          .faculty-card-grid {
+               display: flex;
+               flex-wrap: wrap;
+               gap: 20px;
+          }
+
+          .faculty-card {
+               flex: 1 1 45%;
+               background: #fff;
+               border-radius: 12px;
+               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+               text-align: center;
+               padding: 20px;
+               transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .faculty-card:hover {
+               transform: translateY(-10px);
+               box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+          }
+
+          .faculty-card img {
+               width: 120px;
+               height: 120px;
+               border-radius: 50%;
+               border: 3px solid var(--primary-blue);
+               object-fit: cover;
+               margin-bottom: 10px;
+          }
+
+          .faculty-card h4 {
+               font-size: 1.2em;
+               font-weight: 600;
+               color: var(--primary-blue);
+               margin: 5px 0;
+          }
+
+          .faculty-card .position {
+               font-weight: 500;
+               color: #555;
+          }
+
+          .faculty-card .aictc-id {
+               font-size: 0.9em;
+               color: #888;
+               margin-bottom: 10px;
+          }
+
+          .faculty-card .expertise {
+               background-color: #e3f2fd;
+               color: var(--primary-blue);
+               padding: 8px 12px;
+               border-radius: 20px;
+               font-style: italic;
+               font-size: 0.9em;
+               margin: 10px 0;
+          }
+
+          .faculty-card .btn-primary {
+               margin-top: 10px;
+               background-color: var(--secondary-blue);
+               border: none;
+               padding: 8px 20px;
+               border-radius: 20px;
+               transition: background-color 0.3s ease, transform 0.3s ease;
+          }
+
+          .faculty-card .btn-primary:hover {
+               background-color: var(--primary-blue);
+               transform: scale(1.05);
+          }
+
+          /* Responsive */
+          @media (max-width: 768px) {
+               .hod-card {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+               }
+
+               .hod-card img {
+                    width: 180px;
+               }
+
+               .faculty-card {
+                    flex: 1 1 100%;
+               }
+
+               .left-sidebar {
+                    width: 100%;
+                    position: relative;
+                    top: 0;
+                    box-shadow: none;
+                    margin-bottom: 20px;
+               }
+
+               .main-container {
+                    flex-direction: column;
+               }
+          }
+
+          /* Footer */
+          .footer {
+               background-color: var(--primary-blue);
+               color: #fff;
+               text-align: center;
+               padding: 20px;
+               margin-top: 40px;
+          }
+     </style>
 </head>
 
 <body>
-     <header>
-          <div class="logo">SIT Trichy</div>
-          <nav>
-               <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="departments.html" class="active">Departments</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="admission.html">Admission</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+     <nav class="navbar">
+          <div class="logo">SIT College</div>
+          <ul class="nav-links">
+               <li><a href="index.html">Home</a></li>
+               <li><a href=# class="active">Departments</a></li>
+               <li><a href="admission.html">Admission</a></li>
+               <li><a href="about.html">About</a></li>
+               <li><a href="contact.html">Contact</a></li>
+          </ul>
+     </nav>
+     <!-- Sidebar + Main content -->
+     <div class="main-container">
+          <nav class="left-sidebar">
+               <div class="nav-header">Department Sections</div>
+               <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active" onclick="showSection('about')">About Department</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('vision')">Vision & Mission</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('faculty')">Faculty Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('syllabus')">Syllabus</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('placement')">Placement</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('peos')">PEOs & POs</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showSection('contact')">Contact</a></li>
                </ul>
           </nav>
-     </header>
 
-     <section id="departments">
-          <h2>Our Departments</h2>
-          <div class="dept-grid">
-               <div class="dept-card">Computer Science</div>
-               <div class="dept-card">Electronics & Communication</div>
-               <div class="dept-card">Mechanical Engineering</div>
-               <div class="dept-card">Civil Engineering</div>
-               <div class="dept-card">Electrical Engineering</div>
-          </div>
-     </section>
+          <main class="main-content">
+               <!-- Sections -->
+               <section id="about" class="content-section">
+                    <h2>About the Department</h2>
+                    <p>The Department of Computer Engineering, established in 1990, has been dedicated to delivering
+                         quality technical education and fostering innovation in the field of computing... </p>
+               </section>
 
-     <footer>
-          <p>&copy; 2025 SIT Trichy</p>
-     </footer>
+               <section id="vision" class="content-section">
+                    <h2>Vision & Mission</h2>
+                    <p><strong>Vision:</strong> To be a center of excellence in computer engineering education and
+                         research.</p>
+                    <p><strong>Mission:</strong> To provide quality education, encourage innovation, and prepare
+                         students for global careers in computing.</p>
+               </section>
+
+               <section id="faculty" class="content-section">
+                    <h2>Faculty Profile</h2>
+                    <!-- HOD Card -->
+                    <div class="hod-card">
+                         <img src="img/cshod.jpg" alt="HOD">
+                         <div>
+                              <h3>Thiru.T.MUTHAMIL SELVAM, M.Tech.</h3>
+                              <p><b>Head of the Department (i/c)</b></p>
+                              <p><a href="mailto:sitcsedepartment@gmail.com">sitcsedepartment@gmail.com</a> |
+                                   <b>Mobile:</b> 9994499781
+                              </p>
+                              <p><b>AICTE ID:</b> 1-477942029</p>
+                              <p>Mr. T. Muthamil Selvam is the Head of the Department of Computer Engineering (i/c),
+                                   bringing with him a strong academic and professional background...</p>
+                         </div>
+                    </div>
+
+                    <!-- Faculty Cards -->
+                    <h2>Teaching Staff</h2>
+                    <div class="faculty-card-grid">
+                         <div class="faculty-card">
+                              <img src="img/staff1.jpg" alt="Faculty">
+                              <span class="position">Lecturer</span>
+                              <h4>Thiru.R.KARTHIKEYAN, B.E</h4>
+                              <div class="aictc-id">AICTE ID: 1-44734514958</div>
+                              <div class="expertise">Expert in AI & ML, passionate about student mentorship.</div>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                         <div class="faculty-card">
+                              <img src="img/staff2.jpg" alt="Faculty">
+                              <span class="position">Lecturer</span>
+                              <h4>Tmt.K.DEEPALAKSHMI, B.E</h4>
+                              <div class="aictc-id">AICTE ID: 1-44239326371</div>
+                              <div class="expertise">Specializes in Data Structures</div>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                         <div class="faculty-card">
+                              <img src="img/staff3.jpeg" alt="Faculty">
+                              <span class="position">Lecturer</span>
+                              <h4>Selvi.I.GLORY, B.E</h4>
+                              <div class="aictc-id">AICTE ID: 1-44238014634</div>
+                              <div class="expertise">Specializes in Operating System</div>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                    </div>
+
+                    <!-- Lab Assistants -->
+                    <h2>Lab Assistants</h2>
+                    <div class="faculty-card-grid">
+                         <div class="faculty-card">
+                              <img src="img/lab1.jpg" alt="Lab Assistant">
+                              <span class="position">Lab Assistant (SG)</span>
+                              <h4>Thiru.T.DURAIRAJ, D.E.E.E</h4>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                         <div class="faculty-card">
+                              <img src="img/lab2.jpg" alt="Lab Assistant">
+                              <span class="position">Lab Assistant</span>
+                              <h4>Thiru.PRASSANA, D.E.E.E</h4>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                         <div class="faculty-card">
+                              <img src="img/lab3.jpg" alt="Lab Assistant">
+                              <span class="position">Lab Assistant</span>
+                              <h4>Tmt.R.SATHYA, DCE, B.C.A</h4>
+                              <button class="btn btn-primary">View Profile</button>
+                         </div>
+                    </div>
+               </section>
+
+               <section id="syllabus" class="content-section">
+                    <h2>Syllabus</h2>
+                    <p>Information about the syllabus will be provided here.</p>
+               </section>
+
+               <section id="placement" class="content-section">
+                    <h2>Placement</h2>
+                    <p>Placement statistics and details will go here.</p>
+               </section>
+
+               <section id="peos" class="content-section">
+                    <h2>Program Educational Objectives (PEOs)</h2>
+                    <ul>
+                         <li>1️⃣ Our graduates will apply the knowledge of computer engineering to plan and design
+                              solutions.</li>
+                    </ul>
+               </section>
+
+               <section id="contact" class="content-section">
+                    <h2>Contact</h2>
+                    <p>Email: dept-cse@sit.ac.in | Phone: +91-1234567890</p>
+               </section>
+          </main>
+     </div>
+
+     <div class="footer">
+          &copy; 2025 SIT - Department of Computer Engineering. All Rights Reserved.
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+          function showSection(id) {
+               document.querySelectorAll('.content-section').forEach(sec => {
+                    sec.classList.remove('show');
+               });
+               const section = document.getElementById(id);
+               section.classList.add('show');
+
+               document.querySelectorAll('.left-sidebar .nav-link').forEach(l => l.classList.remove('active'));
+               document.querySelector(`.left-sidebar a[onclick="showSection('${id}')"]`).classList.add('active');
+          }
+          document.addEventListener('DOMContentLoaded', () => showSection('about'));
+     </script>
 </body>
 
 </html>
