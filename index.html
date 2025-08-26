@@ -58,11 +58,13 @@ footer { background: var(--primary-blue); color:#fff; text-align:center; padding
 </style>
 </head>
 <body>
+
 <header class="header">
   <span><img class="img-logo" src="img/sit.jpeg" alt="SIT Logo"></span>
   <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY ,Trichy</span>
   <span><img class="img-logo" src="img/FOUNDER.jpeg" alt="Founder"></span>
 </header>
+
 <nav class="navbar navbar-expand-lg sticky-top" style="background: linear-gradient(to right, #e3f2fd, #bbdefb); box-shadow:0 2px 8px rgba(0,0,0,0.1);">
 <div class="container-fluid">
   <a class="navbar-brand fw-bold text-dark" href="#">SIT College</a>
@@ -80,9 +82,66 @@ footer { background: var(--primary-blue); color:#fff; text-align:center; padding
 </div>
 </nav>
 
-<!-- Hero, About, Departments, Why Us, Contact sections remain unchanged -->
+<!-- Hero Section -->
+<section class="hero">
+  <h2>Welcome to SIT Trichy</h2>
+  <p>Seshasayee Institute of Technology is dedicated to excellence in education, innovation, and research for a brighter future.</p>
+  <a href="#" class="btn btn-warning fw-bold px-4 py-2 shadow">Explore More</a>
+</section>
 
-<!-- AI Assistant HTML -->
+<main class="container">
+
+<!-- About Section -->
+<section class="my-5">
+  <h2 class="text-center text-primary mb-4">About Us</h2>
+  <div class="about-box">
+    <p>Seshasayee Institute of Technology, Tiruchirappalli, a pioneering Technical Institution occupying a unique position in the field of technical education in our country...</p>
+  </div>
+</section>
+
+<!-- Departments Section -->
+<section>
+  <h2 class="text-center text-primary mb-4">Our Departments</h2>
+  <div class="cards">
+    <div class="card-custom"><h3>CSE</h3><p>AI, ML, Software Development, Data Science & Cloud Computing.</p></div>
+    <div class="card-custom"><h3>ICE</h3><p>Electronics, Communication Systems, VLSI & Embedded Design.</p></div>
+    <div class="card-custom"><h3>Mechanical</h3><p>Robotics, Automotive Engineering, and Smart Manufacturing.</p></div>
+    <div class="card-custom"><h3>Civil</h3><p>Construction, Smart Cities, Structural & Environmental Engineering.</p></div>
+    <div class="card-custom"><h3>EEE</h3><p>Electrical Systems, Renewable Energy, Power Electronics.</p></div>
+    <div class="card-custom"><h3>Paper Technology</h3><p>Pulp & Paper Manufacturing, Green Technology, Industrial Applications.</p></div>
+    <div class="card-custom"><h3>Chemical Engineering</h3><p>Process Design, Petrochemicals, Pharmaceuticals & Biochemical Engineering.</p></div>
+  </div>
+</section>
+
+<!-- Why Us Section -->
+<section class="my-5">
+  <h2 class="text-center text-primary mb-4">Why Us?</h2>
+  <div class="cards">
+    <div class="card-custom"><h3>73 Years of Experience</h3></div>
+    <div class="card-custom"><h3>Scholarships</h3></div>
+    <div class="card-custom"><h3>Sports</h3></div>
+    <div class="card-custom"><h3>Discipline</h3></div>
+    <div class="card-custom"><h3>Highly Qualified Faculties</h3></div>
+    <div class="card-custom"><h3>Best Placement Record</h3></div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact">
+  <h2>Find Us</h2>
+  <div class="contact-card">
+    <div class="address">
+      <h3>Address</h3>
+      <p>Thanjore Main Road, Ariyamangalam, Kamaraj Nagar, Trichy-620010, Tamilnadu, India</p>
+    </div>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=Seshasayee+Institute+of+Technology+Trichy&hl=en&z=16&output=embed" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- AI Assistant -->
 <div id="sit-chatbot">
   <div id="sit-chat-header">
     <span>SIT AI Assistant</span>
@@ -110,181 +169,7 @@ footer { background: var(--primary-blue); color:#fff; text-align:center; padding
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const chatHeader=document.getElementById('sit-chat-header');
-const chatBody=document.getElementById('sit-chat-body');
-const chatMessages=document.getElementById('sit-chat-messages');
-const chatInput=document.getElementById('sit-chat-input');
-const chatSend=document.getElementById('sit-chat-send');
-const quickBtns=document.querySelectorAll('.quick-btn');
-const themeBtn=document.getElementById('sit-chat-toggle-theme');
-const chatbotContainer=document.getElementById('sit-chatbot');
-chatHeader.addEventListener('click',()=>{chatBody.style.display=chatBody.style.display==='block'?'none':'block';});
-themeBtn.addEventListener('click',()=>{chatbotContainer.classList.toggle('dark-mode');themeBtn.textContent=chatbotContainer.classList.contains('dark-mode')?'☀️':'🌙';});
-function getAIResponse(msg){const m=msg.toLowerCase();if(m.includes('                    <h3>Chemical Engineering</h3>
-                         <p>Process Design, Petrochemicals, Pharmaceuticals & Biochemical Engineering.</p>
-                    </div>
-               </div>
-          </section>
-
-          <!-- Why Us -->
-          <section class="my-5">
-               <h2 class="text-center text-primary mb-4">Why Us?</h2>
-               <div class="cards">
-                    <div class="card-custom">
-                         <img src="img/vecteezy_73th-years-anniversary-logo-with-golden-ring-isolated-on_17489884-1.jpg"
-                              alt="">
-                         <h3>73 Years of Experience</h3>
-                    </div>
-                    <div class="card-custom">
-                         <img src="img/scor.jpg" alt="">
-                         <h3>Scholarships</h3>
-                    </div>
-                    <div class="card-custom">
-                         <img src="img/sport.png" alt="">
-                         <h3>Sports</h3>
-                    </div>
-                    <div class="card-custom">
-                         <img src="img/discipline.png" alt="">
-                         <h3>Discipline</h3>
-                    </div>
-                    <div class="card-custom">
-                         <img src="img/EXPORT.png" alt="">
-                         <h3>Highly Qualified Faculties</h3>
-                    </div>
-                    <div class="card-custom">
-                         <img src="img/plasment.png" alt="">
-                         <h3>Best Placement Record</h3>
-                    </div>
-               </div>
-          </section>
-
-
-          <section class="contact">
-               <h2>Find Us</h2>
-               <div class="contact-card">
-                    <div class="address">
-                         <h3>Address</h3>
-                         <p>Thanjore Main Road,<br>Ariyamangalam, Kamaraj Nagar,<br>Trichy-620010,<br>Tamilnadu, India
-                         </p>
-                    </div>
-                    <div class="map-container">
-                         <iframe
-                              src="https://www.google.com/maps?q=Seshasayee+Institute+of+Technology+Trichy&hl=en&z=16&output=embed"
-                              allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-               </div>
-          </section>
-     </main>
-     <!-- Optimized SIT AI Assistant -->
-<div id="sit-chatbot" style="position: fixed; bottom: 20px; right: 20px; width: 320px; max-width: 90%; z-index: 9999; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.25); overflow: hidden; font-family:sans-serif;">
-  <div id="sit-chat-header" style="background: var(--primary-blue); color: white; padding: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-    <span>SIT AI Assistant</span>
-    <button id="sit-chat-toggle-theme" style="background: transparent; border: none; color: white; cursor: pointer;">🌙</button>
-  </div>
-  <div id="sit-chat-body" style="display:none; background:#f0f8ff; max-height:400px; overflow-y:auto; padding:10px;">
-    <div id="sit-chat-messages"></div>
-    <div id="sit-quick-replies" style="margin:10px 0;">
-      <button class="quick-btn" data-msg="About SIT">About SIT</button>
-      <button class="quick-btn" data-msg="Admission details">Admission</button>
-      <button class="quick-btn" data-msg="Departments offered">Departments</button>
-      <button class="quick-btn" data-msg="Placement info">Placements</button>
-      <button class="quick-btn" data-msg="Contact info">Contact</button>
-    </div>
-    <div style="display:flex; gap:5px;">
-      <input id="sit-chat-input" type="text" placeholder="Type a message..." style="flex:1; padding:8px; border-radius:5px; border:1px solid #ccc;">
-      <button id="sit-chat-send" style="background: var(--secondary-blue); color:white; border:none; padding:8px 12px; border-radius:5px; cursor:pointer;">Send</button>
-    </div>
-  </div>
-</div>
-
-<style>
-  #sit-chat-messages div{margin-bottom:10px; display:flex; gap:8px; align-items:flex-start;}
-  .msg-user{justify-content:flex-end;}
-  .msg-bubble{max-width:70%; padding:8px 12px; border-radius:12px; line-height:1.3;}
-  .msg-user .msg-bubble{background: var(--secondary-blue); color:white; border-radius:12px 12px 0 12px;}
-  .msg-ai .msg-bubble{background:#e0e7ff; color:#1f2937; border-radius:12px 12px 12px 0;}
-  .avatar{width:30px; height:30px; border-radius:50%;}
-  .quick-btn{background:#2563EB; color:white; border:none; padding:5px 10px; margin:2px; border-radius:5px; cursor:pointer; font-size:12px; transition:0.3s;}
-  .quick-btn:hover{background:#1E40AF;}
-  .dark-mode{background:#1f2937; color:white;}
-  .dark-mode .msg-ai .msg-bubble{background:#374151; color:white;}
-  .dark-mode .msg-user .msg-bubble{background:#2563EB; color:white;}
-  .dark-mode #sit-chat-body{background:#111827;}
-</style>
-
-<script>
+// Chatbot JS
 const chatHeader = document.getElementById('sit-chat-header');
 const chatBody = document.getElementById('sit-chat-body');
-const chatMessages = document.getElementById('sit-chat-messages');
-const chatInput = document.getElementById('sit-chat-input');
-const chatSend = document.getElementById('sit-chat-send');
-const quickBtns = document.querySelectorAll('.quick-btn');
-const themeBtn = document.getElementById('sit-chat-toggle-theme');
-const chatbotContainer = document.getElementById('sit-chatbot');
-
-// Toggle chat open/close
-chatHeader.addEventListener('click', () => {
-  chatBody.style.display = chatBody.style.display==='block'?'none':'block';
-});
-
-// Toggle dark/light theme
-themeBtn.addEventListener('click', ()=>{
-  chatbotContainer.classList.toggle('dark-mode');
-  themeBtn.textContent = chatbotContainer.classList.contains('dark-mode')?'☀️':'🌙';
-});
-
-// Predefined AI responses
-function getAIResponse(msg){
-  const m = msg.toLowerCase();
-  if(m.includes('about')) return "SIT is Seshasayee Institute of Technology, Trichy, established in 1952. It offers quality technical education.";
-  if(m.includes('admission')) return "Admission: Check our Admission page for courses, fees, eligibility, and application process.";
-  if(m.includes('department')) return "Departments: CSE, ICE, Mechanical, Civil, EEE, Paper Tech, Chemical Engineering.";
-  if(m.includes('placement')) return "Placements: SIT has strong industry connections and excellent placement records.";
-  if(m.includes('contact')) return "Contact: Thanjore Main Road, Ariyamangalam, Trichy-620010, Tamil Nadu, India. Phone: +91-XXXX-XXXXXX";
-  return "Sorry, I couldn't understand. You can try one of the quick buttons.";
-}
-
-// Add message to chat
-function addMessage(sender, text){
-  const msgDiv = document.createElement('div');
-  msgDiv.className = sender==='user'?'msg-user':'msg-ai';
-  msgDiv.innerHTML = `${sender==='ai'?'<img class="avatar" src="img/sit.jpeg">':''}<div class="msg-bubble">${text}</div>${sender==='user'?'<img class="avatar" src="img/FOUNDER.jpeg">':''}`;
-  chatMessages.appendChild(msgDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Send message function
-function sendMessage(message){
-  if(!message) return;
-  addMessage('user', message);
-  addMessage('ai', 'Typing...');
-  setTimeout(()=>{
-    chatMessages.lastChild.remove(); // remove 'Typing...'
-    addMessage('ai', getAIResponse(message));
-  },800);
-}
-
-// Send button & Enter key
-chatSend.addEventListener('click', ()=>{
-  sendMessage(chatInput.value);
-  chatInput.value='';
-});
-chatInput.addEventListener('keypress',(e)=>{
-  if(e.key==='Enter'){
-    sendMessage(chatInput.value);
-    chatInput.value='';
-  }
-});
-
-// Quick buttons
-quickBtns.forEach(btn=>{btn.addEventListener('click',()=>sendMessage(btn.dataset.msg));});
-</script>
-
-     <footer>
-          <p>&copy; 2025 SIT Trichy | All Rights Reserved</p>
-     </footer>
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+const chatMessages = document.getElementById('sit-chat
