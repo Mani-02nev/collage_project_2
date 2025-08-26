@@ -15,9 +15,23 @@
                --text-dark: #1f2937;
           }
 
+
           body {
+               padding-top: 0;
+               /* header is static, navbar is sticky so no extra padding needed */
                background: linear-gradient(to right, #e3f2fd, #bbdefb);
                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+
+          .navbar {
+               background: #cce5ff;
+               box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+               color: black;
+               position: sticky;
+               top: 0;
+               /* sticks to top when scrolling under header */
+               z-index: 1000;
+
           }
 
           .navbar-nav .nav-link {
