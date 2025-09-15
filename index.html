@@ -5,10 +5,10 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>SIT College - Home</title>
-
-     <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
      <style>
           :root {
                --primary-blue: #243c7e;
@@ -16,12 +16,44 @@
                --accent-yellow: #FACC15;
                --bg-light: #F9FAFB;
                --text-dark: #1f2937;
+               --text-light: #f8f9fa;
+               --glow-color: rgba(56, 189, 248, 0.5);
           }
 
           body {
                background: linear-gradient(to right, #e3f2fd, #bbdefb);
                color: var(--text-dark);
-               font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+               font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+
+          /* Preloader styles */
+          #preloader {
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               background: var(--primary-blue);
+               z-index: 9999;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               transition: opacity 0.5s ease-out;
+          }
+
+          .spinner {
+               width: 60px;
+               height: 60px;
+               border: 5px solid rgba(255, 255, 255, 0.3);
+               border-top-color: var(--accent-yellow);
+               border-radius: 50%;
+               animation: spin 1s linear infinite;
+          }
+
+          @keyframes spin {
+               to {
+                    transform: rotate(360deg);
+               }
           }
 
           .header {
@@ -46,147 +78,291 @@
                border-radius: 10px;
           }
 
+          /* Navbar styling */
+          .navbar {
+               background: linear-gradient(to right, #e3f2fd, #bbdefb) !important;
+               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          }
+
+          .navbar-nav .nav-link {
+               transition: all 0.3s ease;
+               border-radius: 8px;
+               padding: 8px 15px;
+               color: var(--text-dark) !important;
+               font-weight: 600;
+          }
+
+          .navbar-nav .nav-link:hover,
+          .navbar-nav .nav-link.active {
+               background: var(--secondary-blue);
+               color: white !important;
+               transform: translateY(-3px);
+               box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+          }
+
+          /* Hero Section Motion Graphics */
           .hero {
-               background: linear-gradient(120deg, var(--primary-blue), #38BDF8);
-               color: #fff;
+               background: linear-gradient(120deg, var(--primary-blue), #38BDF8, #06b6d4, #2563eb);
+               background-size: 300% 300%;
+               animation: gradientMove 10s ease infinite;
+               color: var(--text-light);
                text-align: center;
-               padding: 70px 20px 50px;
-               border-radius: 0 0 50px 50px;
-               margin-bottom: 35px;
+               padding: 80px 20px 60px;
+               border-radius: 0 0 60px 60px;
+               margin-bottom: 40px;
+               position: relative;
+               overflow: hidden;
+          }
+
+          @keyframes gradientMove {
+               0% {
+                    background-position: 0% 50%
+               }
+
+               50% {
+                    background-position: 100% 50%
+               }
+
+               100% {
+                    background-position: 0% 50%
+               }
+          }
+
+          .hero::before,
+          .hero::after {
+               content: '';
+               position: absolute;
+               border-radius: 50%;
+               opacity: 0.2;
+               animation: floaty 12s ease-in-out infinite alternate;
+          }
+
+          .hero::before {
+               width: 150px;
+               height: 150px;
+               top: -50px;
+               left: -50px;
+               background: rgba(255, 255, 255, 0.2);
+          }
+
+          .hero::after {
+               width: 200px;
+               height: 200px;
+               bottom: -80px;
+               right: -80px;
+               background: rgba(255, 255, 255, 0.15);
+               animation-delay: -5s;
+          }
+
+          @keyframes floaty {
+               from {
+                    transform: translateY(0) rotate(0deg) scale(1);
+               }
+
+               to {
+                    transform: translateY(-40px) rotate(20deg) scale(1.1);
+               }
           }
 
           .hero h2 {
-               font-size: 40px;
+               font-size: 48px;
                margin-bottom: 15px;
+               font-weight: 700;
+               animation: fadeInDown 1s ease-out;
           }
 
+          .hero p {
+               animation: fadeInUp 1s ease-out 0.3s;
+               animation-fill-mode: backwards;
+               /* Ensures it starts invisible */
+          }
+
+          .hero .btn {
+               animation: fadeInUp 1s ease-out 0.6s;
+               animation-fill-mode: backwards;
+          }
+
+          @keyframes fadeInDown {
+               from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+               }
+
+               to {
+                    opacity: 1;
+                    transform: translateY(0);
+               }
+          }
+
+          @keyframes fadeInUp {
+               from {
+                    opacity: 0;
+                    transform: translateY(30px);
+               }
+
+               to {
+                    opacity: 1;
+                    transform: translateY(0);
+               }
+          }
+
+          /* Section headings */
+          .section-heading {
+               text-align: center;
+               color: var(--primary-blue);
+               margin-bottom: 40px;
+               font-weight: 700;
+          }
+
+          /* About Box */
           .about-box {
-               background: #f8faff;
-               border: 2px solid #0d47a1;
+               background: #ffffff;
+               border-left: 5px solid var(--primary-blue);
                border-radius: 15px;
-               padding: 25px 30px;
+               padding: 30px 35px;
                text-align: justify;
-               box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+               box-shadow: 0px 8px 25px rgba(36, 60, 126, 0.1);
                line-height: 1.8;
-               font-size: 16px;
+               font-size: 17px;
                color: #333;
           }
 
-
+          /* Advanced Card Design */
           .cards {
                display: grid;
-               grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-               gap: 25px;
+               grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+               gap: 30px;
           }
 
           .card-custom {
                background: #fff;
                padding: 25px;
                border-radius: 15px;
-               border-top: 4px solid #38BDF8;
-               box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-               transition: 0.3s;
-               min-height: 160px;
+               border-top: 4px solid var(--secondary-blue);
+               box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+               transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
                text-align: center;
+               position: relative;
+               overflow: hidden;
           }
 
           .card-custom:hover {
-               transform: translateY(-8px) scale(1.03);
-               border-top: 4px solid var(--accent-yellow);
+               transform: translateY(-10px) scale(1.03);
+               border-top-color: var(--accent-yellow);
+               box-shadow: 0 12px 30px var(--glow-color);
+          }
+
+          .card-custom h3 {
+               color: var(--primary-blue);
+               font-weight: 600;
           }
 
           .card-custom img {
-               width: 100px;
-               height: 100px;
-               margin: 0 auto 10px auto;
-
+               width: 80px;
+               height: 80px;
+               margin: 0 auto 15px auto;
                display: block;
+               transition: transform 0.3s ease;
           }
 
+          .card-custom:hover img {
+               transform: scale(1.1) rotate(5deg);
+          }
 
+          /* Contact Section */
           .contact {
                text-align: center;
-               padding: 40px 20px;
-               background: #f0f8ff;
+               padding: 50px 20px;
+               background-color: #f0f4f8;
+               margin-top: 40px;
           }
 
           .contact h2 {
-               font-size: 26px;
-               color: #004080;
-               margin-bottom: 20px;
+               font-size: 28px;
+               color: var(--primary-blue);
+               margin-bottom: 25px;
+               font-weight: 700;
           }
 
           .contact-card {
                display: flex;
                flex-wrap: wrap;
                justify-content: center;
-               gap: 20px;
+               gap: 30px;
                background: white;
-               border-radius: 12px;
-               box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-               padding: 20px;
+               border-radius: 15px;
+               box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+               padding: 30px;
           }
 
           .address {
-               flex: 1 1 250px;
+               flex: 1 1 300px;
                text-align: left;
           }
 
           .address h3 {
-               color: #004080;
-               margin-bottom: 10px;
+               color: var(--primary-blue);
+               margin-bottom: 15px;
+               font-weight: 600;
           }
 
           .address p {
                margin-bottom: 15px;
-               color: #333;
-               line-height: 1.5;
+               color: #444;
+               line-height: 1.7;
           }
 
           .map-container {
-               flex: 1 1 300px;
+               flex: 1 1 350px;
                border-radius: 12px;
                overflow: hidden;
+               border: 3px solid #ddd;
           }
 
+          .map-container iframe {
+               width: 100%;
+               height: 100%;
+               min-height: 250px;
+               border: 0;
+          }
+
+          /* Footer */
           footer {
                background: var(--primary-blue);
-               color: #fff;
+               color: var(--text-light);
                text-align: center;
-               padding: 20px;
+               padding: 25px;
                margin-top: 40px;
-               border-radius: 10px 10px 0 0;
+               border-radius: 15px 15px 0 0;
           }
 
-          .navbar-nav .nav-link {
-               transition: all 0.3s ease;
-               border-radius: 8px;
-               padding: 8px 12px;
-               color: #000 !important;
-
+          /* Scroll Animation */
+          .fade-in-section {
+               opacity: 0;
+               transform: translateY(40px);
+               transition: opacity 0.8s ease-out, transform 0.8s ease-out;
           }
 
-          .navbar-nav .nav-link:hover {
-               background: #2563EB;
-
-               color: white !important;
-               transform: scale(1.05);
-               box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+          .fade-in-section.is-visible {
+               opacity: 1;
+               transform: translateY(0);
           }
      </style>
 </head>
 
 <body>
-     <!-- Header -->
+
+     <div id="preloader">
+          <div class="spinner"></div>
+     </div>
+
      <header class="header">
           <span><img class="img-logo" src="img/sit.jpeg" alt="SIT Logo"></span>
-          <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY ,Trichy</span>
+          <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY, Trichy</span>
           <span><img class="img-logo" src="img/FOUNDER.jpeg" alt="Founder"></span>
      </header>
 
-     <!-- Bootstrap Navbar -->
-     <nav class="navbar navbar-expand-lg sticky-top"
-          style="background: linear-gradient(to right, #e3f2fd, #bbdefb); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+     <nav class="navbar navbar-expand-lg sticky-top">
           <div class="container-fluid">
                <a class="navbar-brand fw-bold text-dark" href="#">SIT College</a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -195,40 +371,37 @@
                </button>
                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav gap-3">
-                         <li class="nav-item">
-                              <a class="nav-link active text-dark fw-semibold" href="#">Home</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link text-dark fw-semibold" href="dept.html">Departments</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link text-dark fw-semibold" href="admission.html">Admission</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link text-dark fw-semibold" href="about.html">About</a>
-                         </li>
-                         <li class="nav-item">
-                              <a class="nav-link text-dark fw-semibold" href="contact.html">Contact</a>
-                         </li>
+                         <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                         <li class="nav-item"><a class="nav-link" href="dept.html">Departments</a></li>
+                         <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+                         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                         <li class="nav-item"><a class="nav-link" href="Ai.html">AI</a></li>
                     </ul>
                </div>
           </div>
      </nav>
 
-
-     <!-- Hero Section -->
      <section class="hero">
           <h2>Welcome to SIT Trichy</h2>
-          <p>Seshasayee Institute of Technology is dedicated to excellence in education, innovation, and research
-               for a brighter future.</p>
+          <p>Dedicated to excellence in education, innovation, and research for a brighter future.</p>
           <a href="#" class="btn btn-warning fw-bold px-4 py-2 shadow">Explore More</a>
      </section>
 
      <main class="container">
 
-          <!-- About -->
-          <section class="my-5">
-               <h2 class="text-center text-primary mb-4">About Us</h2>
+          <section class="my-5 text-center fade-in-section">
+               <h2 class="section-heading">Login / Sign Up</h2>
+               <button class="btn btn-danger mb-3" onclick="googleLogin()">Login with Google</button>
+               <br><br>
+               <input type="email" id="email" class="form-control mb-2 w-50 mx-auto" placeholder="Enter email">
+               <input type="password" id="password" class="form-control mb-2 w-50 mx-auto" placeholder="Enter password">
+               <button class="btn btn-primary mb-3" onclick="emailSignUp()">Sign Up & Verify</button>
+               <div id="userInfo" class="mt-3"></div>
+          </section>
+
+          <section class="my-5 fade-in-section">
+               <h2 class="section-heading">About Us</h2>
                <div class="about-box">
                     <p>Seshasayee Institute of Technology, Tiruchirappalli, a pioneering Technical Institution occupying
                          a unique position in the field of technical education in our country, is the outcome of the
@@ -243,9 +416,8 @@
                </div>
           </section>
 
-          <!-- Departments -->
-          <section>
-               <h2 class="text-center text-primary mb-4">Our Departments</h2>
+          <section class="my-5 fade-in-section">
+               <h2 class="section-heading">Our Departments</h2>
                <div class="cards">
                     <div class="card-custom">
                          <h3>CSE</h3>
@@ -278,62 +450,162 @@
                </div>
           </section>
 
-          <!-- Why Us -->
-          <section class="my-5">
-               <h2 class="text-center text-primary mb-4">Why Us?</h2>
+          <section class="my-5 fade-in-section">
+               <h2 class="section-heading">Why Us?</h2>
                <div class="cards">
-                    <div class="card-custom">
-                         <img src="img/vecteezy_73th-years-anniversary-logo-with-golden-ring-isolated-on_17489884-1.jpg"
-                              alt="">
+                    <div class="card-custom"><img
+                              src="img/vecteezy_73th-years-anniversary-logo-with-golden-ring-isolated-on_17489884-1.jpg"
+                              alt="73 Years">
                          <h3>73 Years of Experience</h3>
                     </div>
-                    <div class="card-custom">
-                         <img src="img/scor.jpg" alt="">
+                    <div class="card-custom"><img src="img/scor.jpg" alt="Scholarships">
                          <h3>Scholarships</h3>
                     </div>
-                    <div class="card-custom">
-                         <img src="img/sport.png" alt="">
+                    <div class="card-custom"><img src="img/sport.png" alt="Sports">
                          <h3>Sports</h3>
                     </div>
-                    <div class="card-custom">
-                         <img src="img/discipline.png" alt="">
+                    <div class="card-custom"><img src="img/discipline.png" alt="Discipline">
                          <h3>Discipline</h3>
                     </div>
-                    <div class="card-custom">
-                         <img src="img/EXPORT.png" alt="">
+                    <div class="card-custom"><img src="img/EXPORT.png" alt="Highly Qualified Faculties">
                          <h3>Highly Qualified Faculties</h3>
                     </div>
-                    <div class="card-custom">
-                         <img src="img/plasment.png" alt="">
+                    <div class="card-custom"><img src="img/plasment.png" alt="Placement Record">
                          <h3>Best Placement Record</h3>
                     </div>
                </div>
           </section>
 
-
-          <section class="contact">
-               <h2>Find Us</h2>
-               <div class="contact-card">
-                    <div class="address">
-                         <h3>Address</h3>
-                         <p>Thanjore Main Road,<br>Ariyamangalam, Kamaraj Nagar,<br>Trichy-620010,<br>Tamilnadu, India
-                         </p>
-                    </div>
-                    <div class="map-container">
-                         <iframe
-                              src="https://www.google.com/maps?q=Seshasayee+Institute+of+Technology+Trichy&hl=en&z=16&output=embed"
-                              allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-               </div>
-          </section>
      </main>
 
+     <section class="contact fade-in-section">
+          <h2>Find Us</h2>
+          <div class="contact-card">
+               <div class="address">
+                    <h3>Address</h3>
+                    <p>Thanjore Main Road,<br>Ariyamangalam, Kamaraj Nagar,<br>Trichy-620010,<br>Tamilnadu, India</p>
+               </div>
+               <div class="map-container">
+                    <iframe
+                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.995995089335!2d78.7289523152684!3d10.815774461539288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf57973fffffd%3A0x64450ff7855b7f6c!2sSeshasayee%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1663248645932!5m2!1sen!2sin"
+                         allowfullscreen="" loading="lazy"></iframe>
+               </div>
+          </div>
+     </section>
+
      <footer>
-          <p>&copy; 2025 SIT Trichy | All Rights Reserved</p>
+          <p>© 2025 SIT Trichy | All Rights Reserved</p>
      </footer>
 
-
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+     <script>
+          // 🔹 Non-Firebase Animations & Interactivity Script
+          window.addEventListener('load', () => {
+               const preloader = document.getElementById('preloader');
+               preloader.style.opacity = '0';
+               setTimeout(() => {
+                    preloader.style.display = 'none';
+               }, 500);
+          });
+
+          const sections = document.querySelectorAll('.fade-in-section');
+          const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+          const observer = new IntersectionObserver((entries, observer) => {
+               entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                         entry.target.classList.add('is-visible');
+                         observer.unobserve(entry.target);
+                    }
+               });
+          }, observerOptions);
+          sections.forEach(section => { observer.observe(section); });
+     </script>
+
+     <script type="module">
+          // Import functions from the Firebase SDKs
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+          import {
+               getAuth,
+               GoogleAuthProvider,
+               signInWithPopup,
+               createUserWithEmailAndPassword,
+               sendEmailVerification,
+               signOut,
+               onAuthStateChanged
+          } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+               apiKey: "AIzaSyC5wDc5ISfAUWlcKgu95Nyclti2W8JvDks",
+               authDomain: "collage-sit-mani.firebaseapp.com",
+               projectId: "collage-sit-mani",
+               storageBucket: "collage-sit-mani.appspot.com",
+               messagingSenderId: "880675754416",
+               appId: "1:880675754416:web:2dae1d19b7354210cb8675",
+               measurementId: "G-RWFTL25YVK"
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const auth = getAuth(app); // Get the Auth service
+
+          // --- Authentication Functions ---
+
+          // Google Login
+          window.googleLogin = function () {
+               const provider = new GoogleAuthProvider();
+               signInWithPopup(auth, provider)
+                    .then(result => {
+                         console.log("Google login successful:", result.user);
+                    })
+                    .catch(error => alert(error.message));
+          }
+
+          // Email Sign-Up + Verification
+          window.emailSignUp = function () {
+               const email = document.getElementById('email').value;
+               const password = document.getElementById('password').value;
+               if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+               }
+               createUserWithEmailAndPassword(auth, email, password)
+                    .then(userCredential => {
+                         sendEmailVerification(userCredential.user)
+                              .then(() => alert(`Verification email sent to ${email}. Please check your inbox!`))
+                              .catch(error => alert(`Could not send verification email: ${error.message}`));
+                    })
+                    .catch(error => alert(error.message));
+          }
+
+          // Logout
+          window.logout = function () {
+               signOut(auth).then(() => {
+                    alert("Logged out successfully!");
+               }).catch(error => alert(error.message));
+          }
+
+          // Observer for Authentication State Changes
+          onAuthStateChanged(auth, user => {
+               const userInfoDiv = document.getElementById('userInfo');
+               if (user) {
+                    if (user.providerData[0].providerId === "google.com" || user.emailVerified) {
+                         userInfoDiv.innerHTML = `
+          <p>Welcome, <strong>${user.displayName || user.email}</strong></p>
+          <button class="btn btn-warning" onclick="logout()">Logout</button>
+        `;
+                    } else {
+                         alert("Please verify your email to log in.");
+                         signOut(auth);
+                    }
+               } else {
+                    // User is signed out
+                    userInfoDiv.innerHTML = '';
+               }
+          });
+     </script>
+
 </body>
 
 </html>
