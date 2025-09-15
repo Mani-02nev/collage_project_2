@@ -9,6 +9,8 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
      <style>
           :root {
                --primary-blue: #243c7e;
@@ -174,7 +176,6 @@
           .hero p {
                animation: fadeInUp 1s ease-out 0.3s;
                animation-fill-mode: backwards;
-               /* Ensures it starts invisible */
           }
 
           .hero .btn {
@@ -212,6 +213,66 @@
                color: var(--primary-blue);
                margin-bottom: 40px;
                font-weight: 700;
+          }
+
+          /* --- NEW AUTH & PROFILE STYLES --- */
+          .auth-card,
+          .profile-card {
+               max-width: 500px;
+               margin: auto;
+               background: #fff;
+               padding: 2.5rem;
+               border-radius: 15px;
+               box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+               border-top: 5px solid var(--primary-blue);
+          }
+
+          .auth-card .nav-tabs .nav-link {
+               font-weight: 600;
+               color: var(--primary-blue);
+          }
+
+          .auth-card .nav-tabs .nav-link.active {
+               background-color: var(--primary-blue);
+               color: white;
+               border-color: var(--primary-blue);
+          }
+
+          .divider {
+               text-align: center;
+               margin: 1.5rem 0;
+               color: #888;
+          }
+
+          .profile-card {
+               text-align: center;
+          }
+
+          .profile-avatar {
+               width: 120px;
+               height: 120px;
+               border-radius: 50%;
+               border: 4px solid var(--secondary-blue);
+               margin: 0 auto 20px;
+               object-fit: cover;
+               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          }
+
+          .profile-name {
+               font-size: 1.75rem;
+               font-weight: 700;
+               color: var(--primary-blue);
+          }
+
+          .profile-email {
+               font-size: 1rem;
+               color: #6c757d;
+               margin-bottom: 25px;
+          }
+
+          .profile-actions .btn {
+               margin: 5px;
+               min-width: 140px;
           }
 
           /* About Box */
@@ -390,14 +451,55 @@
 
      <main class="container">
 
-          <section class="my-5 text-center fade-in-section">
-               <h2 class="section-heading">Login / Sign Up</h2>
-               <button class="btn btn-danger mb-3" onclick="googleLogin()">Login with Google</button>
-               <br><br>
-               <input type="email" id="email" class="form-control mb-2 w-50 mx-auto" placeholder="Enter email">
-               <input type="password" id="password" class="form-control mb-2 w-50 mx-auto" placeholder="Enter password">
-               <button class="btn btn-primary mb-3" onclick="emailSignUp()">Sign Up & Verify</button>
-               <div id="userInfo" class="mt-3"></div>
+          <section id="auth-section-container" class="my-5 fade-in-section">
+               <h2 class="section-heading">Student Portal</h2>
+
+               <div id="login-signup-card" class="auth-card">
+                    <ul class="nav nav-tabs nav-fill mb-4" id="authTabs" role="tablist">
+                         <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                   data-bs-target="#login-tab-pane" type="button" role="tab">Login</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="signup-tab" data-bs-toggle="tab"
+                                   data-bs-target="#signup-tab-pane" type="button" role="tab">Sign Up</button>
+                         </li>
+                    </ul>
+
+                    <div class="tab-content" id="authTabsContent">
+                         <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel">
+                              <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Enter email">
+                              <input type="password" id="loginPassword" class="form-control mb-3"
+                                   placeholder="Enter password">
+                              <button class="btn btn-primary w-100" onclick="emailLogin()">Login</button>
+                         </div>
+
+                         <div class="tab-pane fade" id="signup-tab-pane" role="tabpanel">
+                              <input type="email" id="signupEmail" class="form-control mb-3" placeholder="Enter email">
+                              <input type="password" id="signupPassword" class="form-control mb-3"
+                                   placeholder="Enter password">
+                              <button class="btn btn-primary w-100" onclick="emailSignUp()">Sign Up & Verify</button>
+                         </div>
+                    </div>
+
+                    <div class="divider">OR</div>
+
+                    <button class="btn btn-danger w-100" onclick="googleLogin()">
+                         <i class="bi bi-google me-2"></i> Continue with Google
+                    </button>
+               </div>
+
+               <div id="user-profile-card" class="profile-card" style="display: none;">
+                    <img id="user-avatar" src="img/default-avatar.png" alt="User Avatar" class="profile-avatar">
+                    <h3 id="user-name" class="profile-name">User Name</h3>
+                    <p id="user-email" class="profile-email">user@example.com</p>
+                    <div class="profile-actions">
+                         <button class="btn btn-secondary"><i class="bi bi-person-circle me-2"></i> View
+                              Dashboard</button>
+                         <button class="btn btn-warning" onclick="logout()"><i class="bi bi-box-arrow-right me-2"></i>
+                              Logout</button>
+                    </div>
+               </div>
           </section>
 
           <section class="my-5 fade-in-section">
@@ -504,9 +606,7 @@
           window.addEventListener('load', () => {
                const preloader = document.getElementById('preloader');
                preloader.style.opacity = '0';
-               setTimeout(() => {
-                    preloader.style.display = 'none';
-               }, 500);
+               setTimeout(() => { preloader.style.display = 'none'; }, 500);
           });
 
           const sections = document.querySelectorAll('.fade-in-section');
@@ -530,6 +630,7 @@
                GoogleAuthProvider,
                signInWithPopup,
                createUserWithEmailAndPassword,
+               signInWithEmailAndPassword, // <-- Import for login
                sendEmailVerification,
                signOut,
                onAuthStateChanged
@@ -548,7 +649,7 @@
 
           // Initialize Firebase
           const app = initializeApp(firebaseConfig);
-          const auth = getAuth(app); // Get the Auth service
+          const auth = getAuth(app);
 
           // --- Authentication Functions ---
 
@@ -559,16 +660,41 @@
                     .then(result => {
                          console.log("Google login successful:", result.user);
                     })
-                    .catch(error => alert(error.message));
+                    .catch(error => alert(`Google Login Error: ${error.message}`));
+          }
+
+          // Email & Password Login
+          window.emailLogin = function () {
+               const email = document.getElementById('loginEmail').value;
+               const password = document.getElementById('loginPassword').value;
+               if (!email || !password) {
+                    return alert("Please enter both email and password.");
+               }
+               signInWithEmailAndPassword(auth, email, password)
+                    .then(userCredential => {
+                         if (!userCredential.user.emailVerified) {
+                              alert("Please verify your email address before logging in.");
+                              signOut(auth);
+                         } else {
+                              console.log("Email login successful:", userCredential.user);
+                         }
+                    })
+                    .catch(error => {
+                         let msg = "Invalid login credentials.";
+                         if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                              alert(msg);
+                         } else {
+                              alert(`Login Error: ${error.message}`);
+                         }
+                    });
           }
 
           // Email Sign-Up + Verification
           window.emailSignUp = function () {
-               const email = document.getElementById('email').value;
-               const password = document.getElementById('password').value;
+               const email = document.getElementById('signupEmail').value;
+               const password = document.getElementById('signupPassword').value;
                if (!email || !password) {
-                    alert("Please enter both email and password.");
-                    return;
+                    return alert("Please enter both email and password.");
                }
                createUserWithEmailAndPassword(auth, email, password)
                     .then(userCredential => {
@@ -576,32 +702,42 @@
                               .then(() => alert(`Verification email sent to ${email}. Please check your inbox!`))
                               .catch(error => alert(`Could not send verification email: ${error.message}`));
                     })
-                    .catch(error => alert(error.message));
+                    .catch(error => alert(`Sign Up Error: ${error.message}`));
           }
 
           // Logout
           window.logout = function () {
                signOut(auth).then(() => {
-                    alert("Logged out successfully!");
-               }).catch(error => alert(error.message));
+                    console.log("Logged out successfully!");
+               }).catch(error => alert(`Logout Error: ${error.message}`));
           }
 
           // Observer for Authentication State Changes
           onAuthStateChanged(auth, user => {
-               const userInfoDiv = document.getElementById('userInfo');
-               if (user) {
-                    if (user.providerData[0].providerId === "google.com" || user.emailVerified) {
-                         userInfoDiv.innerHTML = `
-          <p>Welcome, <strong>${user.displayName || user.email}</strong></p>
-          <button class="btn btn-warning" onclick="logout()">Logout</button>
-        `;
-                    } else {
-                         alert("Please verify your email to log in.");
+               const loginCard = document.getElementById('login-signup-card');
+               const profileCard = document.getElementById('user-profile-card');
+               const userName = document.getElementById('user-name');
+               const userEmail = document.getElementById('user-email');
+               const userAvatar = document.getElementById('user-avatar');
+               const defaultAvatar = 'img/default-avatar.png'; // A default image path
+
+               if (user && (user.emailVerified || user.providerData[0].providerId === 'google.com')) {
+                    // --- User is logged in and verified ---
+                    userName.textContent = user.displayName || 'SIT Student';
+                    userEmail.textContent = user.email;
+                    userAvatar.src = user.photoURL || defaultAvatar;
+
+                    loginCard.style.display = 'none';
+                    profileCard.style.display = 'block';
+
+               } else {
+                    // --- User is signed out or not verified ---
+                    if (user && !user.emailVerified) {
+                         // If user exists but is not verified, sign them out to prevent access
                          signOut(auth);
                     }
-               } else {
-                    // User is signed out
-                    userInfoDiv.innerHTML = '';
+                    loginCard.style.display = 'block';
+                    profileCard.style.display = 'none';
                }
           });
      </script>
