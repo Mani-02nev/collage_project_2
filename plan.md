@@ -82,3 +82,5 @@ Analyze the existing SIT website and create a modern, responsive Figma design fo
 - Wireframes for each page
 - Full Figma mockups (desktop & mobile)
 - Assets ready for development
+
+             

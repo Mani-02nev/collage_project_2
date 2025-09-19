@@ -10,15 +10,9 @@
           :root {
                --primary-blue: #243c7e;
                --secondary-blue: #2563EB;
-               --accent-yellow: #FACC15;
-               --bg-light: #F9FAFB;
-               --text-dark: #1f2937;
           }
 
-
           body {
-               padding-top: 0;
-               /* header is static, navbar is sticky so no extra padding needed */
                background: linear-gradient(to right, #e3f2fd, #bbdefb);
                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           }
@@ -26,26 +20,6 @@
           .navbar {
                background: #cce5ff;
                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-               color: black;
-               position: sticky;
-               top: 0;
-               /* sticks to top when scrolling under header */
-               z-index: 1000;
-
-          }
-
-          .navbar-nav .nav-link {
-               transition: all 0.3s ease;
-               border-radius: 8px;
-               padding: 8px 12px;
-               color: #000 !important;
-          }
-
-          .navbar-nav .nav-link:hover {
-               background: #2563EB;
-               color: white !important;
-               transform: scale(1.05);
-               box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
           }
 
           .form-card {
@@ -86,6 +60,12 @@
                height: 50px;
                border-radius: 10px;
           }
+
+          .active {
+               background: #1e40af;
+               color: #fff !important;
+               border-radius: 12px;
+          }
      </style>
 </head>
 
@@ -96,39 +76,25 @@
           <span class="header-title">SESHASAYEE INSTITUTE OF TECHNOLOGY ,Trichy</span>
           <span><img class="img-logo" src="img/FOUNDER.jpeg" alt="Founder"></span>
      </header>
+
      <!-- Navbar -->
-     <header>
-          <nav class="navbar navbar-expand-lg sticky-top"
-               style="background: linear-gradient(to right, #e3f2fd, #bbdefb); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-               <div class="container-fluid">
-                    <a class="navbar-brand fw-bold text-dark" href="#">SIT College</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                         <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                         <ul class="navbar-nav gap-3">
-                              <li class="nav-item">
-                                   <a class="nav-link text-dark fw-semibold" href="index.html">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                   <a class="nav-link text-dark fw-semibold" href="dept.html">Departments</a>
-                              </li>
-                              <li class="nav-item">
-                                   <a class="nav-link active fw-semibold" style="color:#2563EB;"
-                                        href="admission.html">Admission</a>
-                              </li>
-                              <li class="nav-item">
-                                   <a class="nav-link text-dark fw-semibold" href="about.html">About</a>
-                              </li>
-                              <li class="nav-item">
-                                   <a class="nav-link text-dark fw-semibold" href="contact.html">Contact</a>
-                              </li>
-                         </ul>
-                    </div>
+     <nav class="navbar navbar-expand-lg sticky-top">
+          <div class="container-fluid">
+               <a class="navbar-brand fw-bold text-dark" href="#">SIT College</a>
+               <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav gap-3">
+                         <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="index.html">Home</a></li>
+                         <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="dept.html">Departments</a>
+                         </li>
+                         <li class="nav-item"><a class="nav-link active fw-semibold" style="color:#2563EB;"
+                                   href="admission.html">Admission</a></li>
+                         <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="about.html">About</a></li>
+                         <li class="nav-item"><a class="nav-link text-dark fw-semibold" href="contact.html">Contact</a>
+                         </li>
+                    </ul>
                </div>
-          </nav>
-     </header>
+          </div>
+     </nav>
 
      <!-- Admission Form -->
      <main class="container my-5">
@@ -136,35 +102,38 @@
                <div class="col-lg-6 col-md-8">
                     <div class="form-card">
                          <h2 class="text-center mb-4 text-primary">Admission Form</h2>
-                         <form>
+                         <form id="admissionForm">
                               <div class="mb-3">
                                    <label class="form-label">Full Name</label>
-                                   <input type="text" class="form-control" placeholder="Enter your full name" required>
-                              </div>
-                              <div class="mb-3">
-                                   <label class="form-label">Email</label>
-                                   <input type="email" class="form-control" placeholder="Enter your email" required>
-                              </div>
-                              <div class="mb-3">
-                                   <label class="form-label">Phone</label>
-                                   <input type="tel" class="form-control" placeholder="Enter your phone number"
+                                   <input type="text" id="name" class="form-control" placeholder="Enter your full name"
                                         required>
                               </div>
                               <div class="mb-3">
+                                   <label class="form-label">Email</label>
+                                   <input type="email" id="email" class="form-control" placeholder="Enter your email"
+                                        required>
+                              </div>
+                              <div class="mb-3">
+                                   <label class="form-label">Phone</label>
+                                   <input type="tel" id="phone" class="form-control"
+                                        placeholder="Enter your phone number" required>
+                              </div>
+                              <div class="mb-3">
                                    <label class="form-label">Course Applying</label>
-                                   <select class="form-select" required>
+                                   <select id="course" class="form-select" required>
                                         <option selected disabled>Choose your course</option>
-                                        <option> Computer Science</option>
-                                        <option> Mechanical</option>
+                                        <option>Computer Science</option>
+                                        <option>Mechanical</option>
                                         <option>Civil</option>
-                                        <option> ECE</option>
-                                        <option> EEE</option>
+                                        <option>ECE</option>
+                                        <option>EEE</option>
                                    </select>
                               </div>
                               <div class="d-grid">
                                    <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
                               </div>
                          </form>
+                         <div id="message" class="mt-3 text-center fw-bold"></div>
                     </div>
                </div>
           </div>
@@ -176,6 +145,57 @@
      </footer>
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+     <!-- Firebase -->
+     <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+          import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+          import { getAuth, sendSignInLinkToEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+          // Firebase config (replace with your project details if different)
+          const firebaseConfig = {
+               apiKey: "AIzaSyC5wDc5ISfAUWlcKgu95Nyclti2W8JvDks",
+               authDomain: "collage-sit-mani.firebaseapp.com",
+               projectId: "collage-sit-mani",
+               storageBucket: "collage-sit-mani.appspot.com",
+               messagingSenderId: "880675754416",
+               appId: "1:880675754416:web:2dae1d19b7354210cb8675",
+               measurementId: "G-RWFTL25YVK"
+          };
+
+          // Init Firebase
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+          const auth = getAuth(app);
+
+          // Form Submit
+          document.getElementById("admissionForm").addEventListener("submit", async (e) => {
+               e.preventDefault();
+
+               const name = document.getElementById("name").value;
+               const email = document.getElementById("email").value;
+               const phone = document.getElementById("phone").value;
+               const course = document.getElementById("course").value;
+
+               try {
+                    // Store in Firestore
+                    await addDoc(collection(db, "admissions"), {
+                         name, email, phone, course, timestamp: new Date()
+                    });
+
+                    // Send Confirmation Email (Magic Link style)
+                    await sendSignInLinkToEmail(auth, email, {
+                         url: window.location.href,
+                         handleCodeInApp: true
+                    });
+
+                    document.getElementById("message").innerHTML = `<span class="text-success">✅ Application submitted successfully! Confirmation email sent to ${email}</span>`;
+                    document.getElementById("admissionForm").reset();
+               } catch (err) {
+                    document.getElementById("message").innerHTML = `<span class="text-danger">❌ ${err.message}</span>`;
+               }
+          });
+     </script>
 </body>
 
 </html>
