@@ -32,7 +32,7 @@
 
         /* --- Header --- */
         .chat-header {
-            background-color: #4A90E2; /* A Google-like blue */
+            background-color: #4A90E2;
             color: white;
             padding: 15px 20px;
             text-align: center;
@@ -48,10 +48,41 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px; /* Increased gap for better spacing */
         }
-
-        /* --- Individual Messages --- */
+        
+        /* --- CSS FOR ALIGNMENT AND AVATARS --- */
+        .message-row {
+            display: flex;
+            align-items: flex-end; /* Aligns avatar with bottom of message bubble */
+            gap: 10px;
+        }
+        
+        .avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 500;
+            flex-shrink: 0; /* Prevents avatar from shrinking */
+        }
+        
+        .avatar.ai {
+            background-color: #6c757d; /* Grey for AI */
+        }
+        
+        .avatar.user {
+            background-color: #4A90E2; /* Blue for User */
+        }
+        
+        .message-row.user {
+            justify-content: flex-end; /* Pushes content to the right */
+        }
+        
+        /* --- Message Bubble Styling --- */
         .message {
             max-width: 80%;
             padding: 12px 18px;
@@ -63,14 +94,12 @@
         .message.user {
             background-color: #4A90E2;
             color: white;
-            align-self: flex-end;
             border-bottom-right-radius: 4px;
         }
 
         .message.ai {
             background-color: #e9e9eb;
             color: #333;
-            align-self: flex-start;
             border-bottom-left-radius: 4px;
         }
 
@@ -121,10 +150,7 @@
             K-gen Assistant ✨
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="message ai">
-                Hello! I am connected to Google's Gemini model. How can I assist you?
             </div>
-        </div>
         <div class="chat-input-area">
             <input type="text" id="userInput" placeholder="Ask me anything..." autocomplete="off">
             <button id="sendButton">Send</button>
@@ -136,73 +162,89 @@
         const userInput = document.getElementById('userInput');
         const sendButton = document.getElementById('sendButton');
         
-        // IMPORTANT: Replace "YOUR_API_KEY" with your actual Gemini API key
-        const API_KEY = "AIzaSyBW3EqVvWdjMl0NyWQiQdqr8L_XBTX_Ffc"; 
+        // IMPORTANT: NEVER SHARE YOUR API KEY. Generate a new one and replace this placeholder.
+        const API_KEY = "YOUR_API_KEY"; 
         const MODEL_NAME = "gemini-1.5-flash-latest";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
-        // Function to add a message to the chat display
+        // Updated function to create the new HTML structure with avatars
         function addMessage(text, sender) {
+            const messageRow = document.createElement('div');
+            messageRow.classList.add('message-row', sender);
+
+            const avatar = document.createElement('div');
+            avatar.classList.add('avatar', sender);
+            avatar.textContent = sender === 'ai' ? 'AI' : 'U';
+
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', sender);
             messageElement.textContent = text;
-            chatMessages.appendChild(messageElement);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the latest message
+            
+            messageRow.appendChild(avatar);
+            messageRow.appendChild(messageElement);
+
+            chatMessages.appendChild(messageRow);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Function to send the user's message to the Gemini API and get a response
+        // Updated function with a "Thinking..." indicator
         async function getAiResponse(userText) {
-            try {
-                const requestBody = {
-                    contents: [{
-                        parts: [{
-                            text: userText
-                        }]
-                    }]
-                };
+            const thinkingRow = document.createElement('div');
+            thinkingRow.classList.add('message-row', 'ai');
+            thinkingRow.innerHTML = `
+                <div class="avatar ai">AI</div>
+                <div class="message ai">Thinking...</div>
+            `;
+            chatMessages.appendChild(thinkingRow);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
+            try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(requestBody),
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
                 
                 const data = await response.json();
-                // Extract the text from the API response
                 const aiText = data.candidates[0].content.parts[0].text;
+                
+                chatMessages.removeChild(thinkingRow);
                 addMessage(aiText.trim(), 'ai');
 
             } catch (error) {
                 console.error("Error fetching AI response:", error);
-                addMessage("Sorry, I couldn't get a response. Please check the API key and console for errors.", 'ai');
+                chatMessages.removeChild(thinkingRow);
+                addMessage("Sorry, an error occurred. Please ensure your API key is correct and valid.", 'ai');
             }
         }
 
-        // Function to handle the user sending a message
         function handleSend() {
             const userText = userInput.value.trim();
             if (userText === "") return;
 
-            addMessage(userText, 'user');
-            userInput.value = ""; // Clear the input field
+            // Check if the placeholder API key is still there
+            if (!API_KEY || API_KEY === "AIzaSyBW3EqVvWdjMl0NyWQiQdqr8L_XBTX_Ffc") {
+                addMessage("SECURITY WARNING: Please add your own valid API key in the script section of the HTML file.", 'ai');
+                return;
+            }
 
-            // Get a real response from the Gemini API
+            addMessage(userText, 'user');
+            userInput.value = "";
             getAiResponse(userText);
         }
 
-        // Event listeners for the send button and the Enter key
         sendButton.addEventListener('click', handleSend);
         userInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 handleSend();
             }
         });
+
+        // Add the initial welcome message when the page loads
+        addMessage("Hello! I am K-gen, your AI assistant. How can I assist you today?", 'ai');
+
     </script>
 </body>
 </html>
