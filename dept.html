@@ -352,6 +352,52 @@
                margin-top: 40px;
           }
 
+          /* --- DEPARTMENT BANNER STYLES --- */
+          .department-banner {
+               width: 100%;
+               height: 200px;
+               background-size: cover;
+               background-position: center;
+               border-radius: 12px;
+               margin-bottom: 30px;
+               box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+               position: relative;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               color: white;
+               font-size: 2.2rem;
+               font-weight: bold;
+               text-align: center;
+               text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+          }
+
+          /* Specific banner images */
+          #cse-banner {
+               background-image: url('img/csc/baner.png');
+          }
+
+          #mech-banner {
+               /* background-image: ; */
+          }
+
+          #eee-banner {
+               background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.ibb.co/xJSRY8g/eee-banner.jpg');
+          }
+
+          #civil-banner {
+               background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.ibb.co/mX7YtB2/civil-banner.jpg');
+          }
+
+          #ice-banner {
+               background-image: url('img/csc/Gemini_Generated_Image_q8xw6pq8xw6pq8xw - Edited.png');
+          }
+
+          #paper-banner {
+               background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://i.ibb.co/G0d0b6m/paper-banner.jpg');
+          }
+
+
           /* --- MOBILE RESPONSIVE STYLES --- */
           @media (max-width: 768px) {
                .header-title {
@@ -421,6 +467,11 @@
 
                .download-btn:last-child {
                     margin-bottom: 0;
+               }
+
+               .department-banner {
+                    height: 150px;
+                    font-size: 1.5rem;
                }
           }
      </style>
@@ -590,6 +641,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="cse-about" class="content-section">
+                            <div class="department-banner" id="cse-banner"></div>
                             <h2>About the CSE Department</h2>
                             <p style="text-align:justify;">The Department of Computer Engineering was established in 1990.</p>
                             <p style="text-align:justify;">Our core mission is to deliver quality technical education and foster innovation within the field of computing.</p>
@@ -599,8 +651,7 @@
                             <p style="text-align:justify;">Our program is proudly accredited by the National Board of Accreditation (NBA), a testament to our high standards of education.</p>
                         </section>
                         <section id="cse-vision" class="content-section">
-                            <h2>Vision & Mission</h2>
-                            <h3>Vision</h3><p>To foster technically proficient, creative and self-governing diploma computer engineers by means of efficient teaching and learning methods to meet industrial and social requirements.</p>
+                            <h2>Vision & Mission</h2><h3>Vision</h3><p>To foster technically proficient, creative and self-governing diploma computer engineers by means of efficient teaching and learning methods to meet industrial and social requirements.</p>
                             <h3>Mission</h3>
                             <ul>
                                 <li>To provide quality and contemporary education through innovative teaching-learning process and effective resource utilization.</li>
@@ -684,6 +735,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="mech-about" class="content-section">
+                            <div class="department-banner" id="mech-banner">MECHANICAL ENGINEERING</div>
                             <h2>About the Department</h2>
                             <p style="text-align:justify;">The Department of Mechanical Engineering, established in 1952, is one of the pioneering departments of the institution.</p>
                             <p style="text-align:justify;">We boast an excellent infrastructure, including a massive workshop, numerous laboratories, and a state-of-the-art Computer Integrated Manufacturing (CIM) lab with dedicated workstations.</p>
@@ -749,6 +801,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="eee-about" class="content-section">
+                             <div class="department-banner" id="eee-banner">ELECTRICAL & ELECTRONICS</div>
                              <h2>About the Department</h2>
                              <p style="text-align:justify;">The Department of Electrical and Electronics Engineering (EEE) was established in 1952, making it a cornerstone of the Seshasayee Institute of Technology.</p>
                              <p style="text-align:justify;">In recognition of its academic excellence, the department was granted Autonomous status in the academic year 1994–95 and has also earned ISO certification for maintaining high quality standards.</p>
@@ -794,6 +847,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="civil-about" class="content-section">
+                            <div class="department-banner" id="civil-banner">CIVIL ENGINEERING</div>
                             <h2>About the Department</h2>
                             <p style="text-align:justify;">The Department of Civil Engineering has been a part of the institute since its inception in 1952.</p>
                             <p style="text-align:justify;">It achieved Autonomous status in the academic year 1994-95, which has enabled the department to frame a curriculum that is both modern and relevant to industry needs.</p>
@@ -839,6 +893,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="ice-about" class="content-section">
+                             <div class="department-banner" id="ice-banner">INSTRUMENTATION & CONTROL</div>
                              <h2>About the Department</h2>
                              <p style="text-align:justify;">The Department of Instrumentation and Control Engineering was established in 1990 to cater to the growing demand for automation professionals.</p>
                              <p style="text-align:justify;">Our primary focus is to provide quality education and promote innovation in the fields of industrial automation and process control.</p>
@@ -882,6 +937,7 @@
                     </nav>
                     <main class="main-content">
                         <section id="paper-about" class="content-section">
+                             <div class="department-banner" id="paper-banner">PAPER TECHNOLOGY</div>
                              <h2>About the Department</h2>
                              <p style="text-align:justify;">The Department of Pulp and Paper Technology launched the first Sandwich Diploma Programme in this field in South India during the academic year 1983–84.</p>
                              <p style="text-align:justify;">A key highlight and integral part of the course is its one-year in-plant training at various partnering paper mills, where students receive a monthly stipend and invaluable industry exposure.</p>

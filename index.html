@@ -78,7 +78,7 @@
           }
 
           .navbar {
-               background: linear-gradient(to right, #e3f2fd, #bbdefb) !important;
+               background: linear-gradient(to right, #e3f2fd, #bbdefb);
                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
           }
 
@@ -92,11 +92,9 @@
 
           .navbar-nav .nav-link:hover,
           .navbar-nav .nav-link.active {
-               background: var(--secondary-blue);
-               color: white !important;
-               transform: translateY(-3px);
                background: #1e40af;
                color: #fff !important;
+               transform: translateY(-3px);
           }
 
           /* Hero Section Motion Graphics */
@@ -144,6 +142,8 @@
                background: #38bdf8;
           }
 
+
+
           .hero::after {
                width: 210px;
                height: 210px;
@@ -164,13 +164,16 @@
                }
           }
 
-          .hero-content h2 {
+          .hero-content h1 {
                font-size: 48px;
                font-weight: 700;
                animation: fadeInDown 1s ease;
+               color: var(--accent-yellow);
           }
 
-          .hero-content h2+h2 {
+          .hero-content h2 {
+               font-size: 46px;
+               font-weight: 700;
                color: #ffffff;
                animation: fadeInDown 1.2s ease;
           }
@@ -219,34 +222,140 @@
                font-weight: 700;
           }
 
+          /* === MODERN AUTH/PROFILE CARD STYLES START === */
           .auth-card,
           .profile-card {
-               max-width: 500px;
+               max-width: 450px;
                margin: auto;
-               background: #fff;
+               background: rgba(255, 255, 255, 0.6);
+               /* Glass effect */
+               backdrop-filter: blur(10px);
+               -webkit-backdrop-filter: blur(10px);
                padding: 2.5rem;
-               border-radius: 15px;
-               box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-               border-top: 5px solid var(--primary-blue);
+               border-radius: 20px;
+               box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+               border: 1px solid rgba(255, 255, 255, 0.2);
+          }
+
+          /* Modern Tabs */
+          .auth-card .nav-tabs {
+               border: none;
+               background-color: rgba(36, 60, 126, 0.1);
+               border-radius: 50px;
+               padding: 5px;
+               margin-bottom: 2rem !important;
+          }
+
+          .auth-card .nav-tabs .nav-item {
+               flex: 1;
           }
 
           .auth-card .nav-tabs .nav-link {
+               border: none !important;
+               border-radius: 50px;
                font-weight: 600;
                color: var(--primary-blue);
+               text-align: center;
+               transition: all 0.3s ease;
           }
 
           .auth-card .nav-tabs .nav-link.active {
                background-color: var(--primary-blue);
                color: white;
-               border-color: var(--primary-blue);
+               box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+          }
+
+          /* Modern Input Fields with Icons */
+          .input-group-custom {
+               position: relative;
+               margin-bottom: 1.5rem;
+               background-color: #fff;
+          }
+
+          .input-group-custom .form-control {
+               background: #f0f4f8;
+               border: none;
+               border-bottom: 2px solid #ddd;
+               border-radius: 8px;
+               height: 50px;
+               padding-left: 45px;
+               font-weight: 500;
+               transition: all 0.3s ease;
+          }
+
+          .input-group-custom .form-control:focus {
+               box-shadow: none;
+               border-bottom-color: var(--secondary-blue);
+               background-color: #fff;
+          }
+
+          .input-group-custom .input-icon {
+               position: absolute;
+               top: 50%;
+               left: 15px;
+               transform: translateY(-50%);
+               color: #9ca3af;
+               transition: color 0.3s ease;
+          }
+
+          .input-group-custom .form-control:focus+.input-icon {
+               color: var(--secondary-blue);
+          }
+
+          /* Modern Buttons */
+          .btn-modern {
+               font-weight: 600;
+               border-radius: 10px;
+               padding: 12px;
+               border: none;
+               transition: all 0.3s ease;
+               box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          }
+
+          .btn-modern:hover {
+               transform: translateY(-3px);
+               box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+          }
+
+          .btn-modern-primary {
+               background: linear-gradient(90deg, var(--secondary-blue), var(--primary-blue));
+               color: white;
+          }
+
+          .btn-modern-google {
+               background-color: #fff;
+               color: var(--text-dark);
+               border: 1px solid #ddd;
+          }
+
+          .btn-modern-google:hover {
+               border-color: #aaa;
           }
 
           .divider {
+               display: flex;
+               align-items: center;
                text-align: center;
-               margin: 1.5rem 0;
                color: #888;
+               margin: 1.5rem 0;
           }
 
+          .divider::before,
+          .divider::after {
+               content: '';
+               flex: 1;
+               border-bottom: 1px solid #ddd;
+          }
+
+          .divider:not(:empty)::before {
+               margin-right: .5em;
+          }
+
+          .divider:not(:empty)::after {
+               margin-left: .5em;
+          }
+
+          /* Profile Card */
           .profile-card {
                text-align: center;
           }
@@ -275,8 +384,10 @@
 
           .profile-actions .btn {
                margin: 5px;
-               min-width: 140px;
+               min-width: 160px;
           }
+
+          /* === MODERN AUTH/PROFILE CARD STYLES END === */
 
           .about-box {
                background: #fff;
@@ -406,11 +517,6 @@
                opacity: 1;
                transform: translateY(0);
           }
-
-          .active {
-               background: #1e40af;
-               color: #fff !important;
-          }
      </style>
 </head>
 
@@ -445,7 +551,7 @@
      <section class="hero">
           <div class="overlay"></div>
           <div class="hero-content">
-               <h2 style="color:var(--accent-yellow);">Welcome To</h2>
+               <h1>Welcome To</h1>
                <h2>SIT Trichy</h2>
                <p>Dedicated to excellence in education, innovation, and research for a brighter future.</p>
                <a href="#" class="btn btn-warning fw-bold px-4 py-2 shadow">Explore More</a>
@@ -453,7 +559,6 @@
      </section>
      <main class="container">
           <section id="auth-section-container" class="my-5 fade-in-section">
-               <h2 class="section-heading">Student Portal</h2>
                <div id="login-signup-card" class="auth-card">
                     <ul class="nav nav-tabs nav-fill mb-4" id="authTabs" role="tablist">
                          <li class="nav-item" role="presentation">
@@ -467,20 +572,34 @@
                     </ul>
                     <div class="tab-content" id="authTabsContent">
                          <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel">
-                              <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Enter email">
-                              <input type="password" id="loginPassword" class="form-control mb-3"
-                                   placeholder="Enter password">
-                              <button class="btn btn-primary w-100" onclick="emailLogin()">Login</button>
+                              <div class="input-group-custom">
+                                   <input type="email" id="loginEmail" class="form-control" placeholder="Enter email">
+                                   <i class="bi bi-envelope input-icon"></i>
+                              </div>
+                              <div class="input-group-custom">
+                                   <input type="password" id="loginPassword" class="form-control"
+                                        placeholder="Enter password">
+                                   <i class="bi bi-lock input-icon"></i>
+                              </div>
+                              <button class="btn btn-modern btn-modern-primary w-100"
+                                   onclick="emailLogin()">Login</button>
                          </div>
                          <div class="tab-pane fade" id="signup-tab-pane" role="tabpanel">
-                              <input type="email" id="signupEmail" class="form-control mb-3" placeholder="Enter email">
-                              <input type="password" id="signupPassword" class="form-control mb-3"
-                                   placeholder="Enter password">
-                              <button class="btn btn-primary w-100" onclick="emailSignUp()">Sign Up & Verify</button>
+                              <div class="input-group-custom">
+                                   <input type="email" id="signupEmail" class="form-control" placeholder="Enter email">
+                                   <i class="bi bi-envelope input-icon"></i>
+                              </div>
+                              <div class="input-group-custom">
+                                   <input type="password" id="signupPassword" class="form-control"
+                                        placeholder="Enter password">
+                                   <i class="bi bi-lock input-icon"></i>
+                              </div>
+                              <button class="btn btn-modern btn-modern-primary w-100" onclick="emailSignUp()">Sign Up
+                                   & Verify</button>
                          </div>
                     </div>
                     <div class="divider">OR</div>
-                    <button class="btn btn-danger w-100" onclick="googleLogin()">
+                    <button class="btn btn-modern btn-modern-google w-100" onclick="googleLogin()">
                          <i class="bi bi-google me-2"></i> Continue with Google
                     </button>
                </div>
@@ -577,8 +696,8 @@
                </div>
                <div class="map-container">
                     <iframe
-                         src="https://www.google.com/maps?q=Seshasayee+Institute+of+Technology+Trichy&hl=en&z=16&output=embed"
-                         width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.895061619428!2d78.7299523152636!3d10.820215761501162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf56e5cb2a71b%3A0x807357597036c0a0!2sSeshasayee%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1663333333333!5m2!1sen!2sin"
+                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                </div>
           </div>
      </section>
@@ -586,12 +705,148 @@
           <p>© 2025 SIT Trichy | All Rights Reserved</p>
      </footer>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+     <script type="module">
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+          import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+          import {
+               getAuth,
+               GoogleAuthProvider,
+               signInWithPopup,
+               createUserWithEmailAndPassword,
+               signInWithEmailAndPassword,
+               onAuthStateChanged,
+               signOut,
+               sendEmailVerification
+          } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+               apiKey: "AIzaSyC5wDc5ISfAUWlcKgu95Nyclti2W8JvDks", // Note: For production, secure this with App Check and Security Rules.
+               authDomain: "collage-sit-mani.firebaseapp.com",
+               projectId: "collage-sit-mani",
+               storageBucket: "collage-sit-mani.appspot.com",
+               messagingSenderId: "880675754416",
+               appId: "1:880675754416:web:be3536cf1e818fc9cb8675",
+               measurementId: "G-3L0P3RS31B"
+          };
+
+          // Initialize Firebase
+          const app = initializeApp(firebaseConfig);
+          const analytics = getAnalytics(app);
+          const auth = getAuth(app);
+          const provider = new GoogleAuthProvider();
+
+          // UI Elements
+          const loginSignupCard = document.getElementById('login-signup-card');
+          const userProfileCard = document.getElementById('user-profile-card');
+          const userNameElem = document.getElementById('user-name');
+          const userEmailElem = document.getElementById('user-email');
+          const userAvatarElem = document.getElementById('user-avatar');
+
+
+          // --- AUTHENTICATION FUNCTIONS ---
+
+          // Google Login
+          window.googleLogin = () => {
+               signInWithPopup(auth, provider)
+                    .then((result) => {
+                         console.log("Google sign-in successful", result.user);
+                    }).catch((error) => {
+                         console.error("Google sign-in error", error);
+                         alert(error.message);
+                    });
+          };
+
+          // Email/Password Sign Up
+          window.emailSignUp = () => {
+               const email = document.getElementById('signupEmail').value;
+               const password = document.getElementById('signupPassword').value;
+               if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+               }
+               createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                         sendEmailVerification(auth.currentUser)
+                              .then(() => {
+                                   alert("Verification email sent! Please check your inbox.");
+                              });
+                         console.log("Sign up successful", userCredential.user);
+                    })
+                    .catch((error) => {
+                         console.error("Sign up error", error);
+                         alert(error.message);
+                    });
+          };
+
+          // Email/Password Login
+          window.emailLogin = () => {
+               const email = document.getElementById('loginEmail').value;
+               const password = document.getElementById('loginPassword').value;
+               if (!email || !password) {
+                    alert("Please enter both email and password.");
+                    return;
+               }
+               signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                         if (!userCredential.user.emailVerified) {
+                              alert("Please verify your email before logging in.");
+                              signOut(auth);
+                              return;
+                         }
+                         console.log("Login successful", userCredential.user);
+                    })
+                    .catch((error) => {
+                         console.error("Login error", error);
+                         alert(error.message);
+                    });
+          };
+
+          // Logout
+          window.logout = () => {
+               signOut(auth).then(() => {
+                    console.log("User logged out");
+               }).catch((error) => {
+                    console.error("Logout error", error);
+               });
+          };
+
+
+          // --- AUTH STATE OBSERVER ---
+          onAuthStateChanged(auth, (user) => {
+               if (user && user.emailVerified) {
+                    // User is signed in and verified
+                    loginSignupCard.style.display = 'none';
+                    userProfileCard.style.display = 'block';
+
+                    userNameElem.textContent = user.displayName || 'Student';
+                    userEmailElem.textContent = user.email;
+                    if (user.photoURL) {
+                         userAvatarElem.src = user.photoURL;
+                    } else {
+                         // Fallback for users without a photo, e.g., email/password sign-ups
+                         userAvatarElem.src = `https://placehold.co/120x120?text=${user.email[0].toUpperCase()}`;
+                    }
+
+               } else {
+                    // User is signed out or not verified
+                    loginSignupCard.style.display = 'block';
+                    userProfileCard.style.display = 'none';
+               }
+          });
+
+     </script>
+
      <script>
+          // --- PRELOADER AND FADE-IN ANIMATION SCRIPT ---
           window.addEventListener('load', () => {
                const preloader = document.getElementById('preloader');
                preloader.style.opacity = '0';
                setTimeout(() => { preloader.style.display = 'none'; }, 500);
           });
+
           const sections = document.querySelectorAll('.fade-in-section');
           const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
           const observer = new IntersectionObserver((entries, observer) => {
@@ -604,7 +859,6 @@
           }, observerOptions);
           sections.forEach(section => { observer.observe(section); });
      </script>
-     <!-- Add your Firebase authentication script as before if needed -->
 </body>
 
 </html>
